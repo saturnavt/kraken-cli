@@ -46,6 +46,8 @@ const Terminal: NextPage = () => {
 
     return (
         <div style={{ backgroundColor: 'black' }}>
+            <br></br>
+            <br></br>
             {/* <table>
                 {
                     previusInput.map((inputs) => {
@@ -54,11 +56,9 @@ const Terminal: NextPage = () => {
                 }
             </table> */}
             <table>
-                {
-                    cmdResult.map((cmdResults) => {
-                        return <li style={{ color: 'white', marginLeft: '5px' }}>{cmdResults.split('\n')}</li>
-                    })
-                }
+                {cmdResult.length == 0 ? null : cmdResult.map((cmdResults) => {
+                    return <li style={{ color: 'white', marginLeft: '5px', }} id="p_wrap">{cmdResults}</li>
+                })}
             </table>
             <form onSubmit={handleSubmit}>
                 <a style={{ color: 'white' }}>{currentPath}{'> '}</a>

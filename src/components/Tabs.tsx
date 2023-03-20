@@ -33,6 +33,7 @@ const TabsComponent: NextPage = () => {
             // defaultValue={tabKey}
             activeKey={tabKey}
             onSelect={(e) => addTab(e)}
+            
         >
             <Tab eventKey="Main" title="Main" color="white">
                 <Terminal />

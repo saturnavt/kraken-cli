@@ -49,6 +49,10 @@ li {
 .nav-tabs {
   color: #fff !important;
   border-bottom: none !important;
+  position: fixed;
+  background-color: #000 !important;
+  border-color: none !important;
+  width: 100%;
 }
 
 .nav-tabs .nav-link:hover{
@@ -71,3 +75,20 @@ li {
 .nav-link{
   color: #fff !important;
 }
+
+#p_wrap {
+  white-space: pre-line;
+  word-wrap: break-word;   
+}
+
+/*Start of the  scrollbar*/
+::-webkit-scrollbar{
+  width: 8px;
+  background-color: #000;
+}
+
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: #fff;
+}
+/*End of the scrollbar*/
