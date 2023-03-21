@@ -40,6 +40,17 @@ const Terminal: NextPage = () => {
             .catch((err) => console.log("Error"))
     }
 
+    function onInputKeyDown(event: any) {
+        switch (event.keyCode) {
+            case 38: // up
+                setInput(previusInput[previusInput.length - 1])
+                break;
+            case 40: // down
+                setInput(previusInput[0])
+                break;
+        }
+    }
+
     useEffect(() => {
         current_path();
     })
@@ -62,7 +73,7 @@ const Terminal: NextPage = () => {
             </table>
             <form onSubmit={handleSubmit}>
                 <a style={{ color: 'white' }}>{currentPath}{'> '}</a>
-                <input onChange={(value) => handleInput(value)} value={input} autoFocus={true}></input>
+                <input onChange={(value) => handleInput(value)} onKeyDown={(e) => onInputKeyDown(e)} value={input} autoFocus={true}></input>
             </form>
         </div>
     )

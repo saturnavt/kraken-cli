@@ -25,6 +25,13 @@ const TabsComponent: NextPage = () => {
         }
     }
 
+    const deleteTab = (tabToDelete: string) => {
+        let deleteTabs = tabsAdd.filter(function (element) {
+            return element.toString() !== tabToDelete;
+        });
+        setTabsAdd(deleteTabs);
+    }
+
     return (
         <Tabs
             // defaultActiveKey={tabKey}
@@ -33,14 +40,21 @@ const TabsComponent: NextPage = () => {
             // defaultValue={tabKey}
             activeKey={tabKey}
             onSelect={(e) => addTab(e)}
-            
+
         >
             <Tab eventKey="Main" title="Main" color="white">
                 <Terminal />
             </Tab>
             {
                 tabsAdd.map((tabAdded) => {
-                    return <Tab eventKey={tabAdded.toString()} title={"Terminal " + tabAdded.toString()} >
+                    return <Tab eventKey={tabAdded.toString()} title={
+                        <div className="divAdded" >
+                            {"Terminal " + tabAdded.toString()}
+                            <button style={{ color: 'red', marginLeft: '6px', float: 'right', marginTop: '-2px' }} onClick={() => deleteTab(tabAdded.toString())} className="btnDelete">
+                                {' '}  x
+                            </button>
+                        </div>
+                    } >
                         <Terminal />
                     </Tab>
                 })

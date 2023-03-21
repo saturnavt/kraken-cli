@@ -35,7 +35,8 @@ li {
   list-style-type: none;
 }
 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
   color: #fff !important;
   background-color: #000 !important;
   border-color: none !important;
@@ -43,6 +44,11 @@ li {
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
+  border-color: #000 !important;
+  border-top-color: #000 !important;
+  border-left-color: #000 !important;
+  border-right-color: #000 !important;
+  border-bottom-color: #fff !important;
   // border-bottom: 1px;
 }
 
@@ -55,7 +61,7 @@ li {
   width: 100%;
 }
 
-.nav-tabs .nav-link:hover{
+.nav-tabs .nav-link:hover {
   border-radius: 0%;
   border-top: 0px;
   border-left: 0px;
@@ -64,7 +70,7 @@ li {
   color: #fff !important;
 }
 
-.nav-tabs .nav-link::before{
+.nav-tabs .nav-link::before {
   border-radius: 0%;
   border-top: 0px;
   border-left: 0px;
@@ -72,23 +78,32 @@ li {
   border-bottom: 0px;
 }
 
-.nav-link{
+.nav-link {
   color: #fff !important;
 }
 
 #p_wrap {
   white-space: pre-line;
-  word-wrap: break-word;   
+  word-wrap: break-word;
 }
 
 /*Start of the  scrollbar*/
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 8px;
   background-color: #000;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #fff;
 }
+
 /*End of the scrollbar*/
+
+.btnDelete {
+  display: none;
+}
+
+.divAdded:hover .btnDelete {
+  display: block;
+}

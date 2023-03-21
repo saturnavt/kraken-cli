@@ -97,6 +97,7 @@ fn cmd(input: String) -> String {
             .expect("failed to execute process")
     } else {
         Command::new("sh")
+            .current_dir(&current_path().replace("\\", "/"))
             .arg("-c")
             .arg(String::from(input))
             .output()
