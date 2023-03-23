@@ -11,7 +11,8 @@ use std::path::Path;
 use std::process::Command;
 use std::process::Stdio;
 use std::time::{SystemTime, UNIX_EPOCH};
-
+use window_vibrancy::{apply_blur};
+use tauri::Manager;
 // const CREATE_NO_WINDOW: u32 = 0x08000000;
 // const DETACHED_PROCESS: u32 = 0x00000008;
 
@@ -124,7 +125,33 @@ fn cmd(input: String, path: String) -> String {
 }
 
 fn main() {
-    tauri::Builder::default()
+    // tauri::Builder::default()
+    //     .invoke_handler(tauri::generate_handler![
+    //         on_button_clicked,
+    //         pc_specs,
+    //         pvp,
+    //         master,
+    //         current_path,
+    //         cmd,
+    //         verify_path
+    //     ])
+    //     .run(tauri::generate_context!())
+    //     .expect("error while running tauri application");
+
+        tauri::Builder::default()
+        .setup(|app| {
+          let window = app.get_window("main").unwrap();
+    
+          #[cfg(target_os = "macos")]
+          apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
+            .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
+    
+          #[cfg(target_os = "windows")]
+          apply_blur(&window, Some((18, 18, 18, 125)))
+            .expect("Unsupported platform! 'apply_blur' is only supported on Windows");
+    
+          Ok(())
+        })
         .invoke_handler(tauri::generate_handler![
             on_button_clicked,
             pc_specs,

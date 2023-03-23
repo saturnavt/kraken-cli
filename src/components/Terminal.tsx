@@ -105,7 +105,7 @@ const Terminal: NextPage = () => {
     }, [])
 
     return (
-        <div style={{ backgroundColor: '#121212' }}>
+        <div style={{ background: 'transparent !important' }}>
             <br></br>
             <br></br>
             {/* <table>

@@ -3,14 +3,16 @@ import type { NextPage } from "next"
 import { useState } from "react"
 
 import { useGlobalShortcut } from "@/hooks/tauri/shortcuts"
-
+import { window } from '@tauri-apps/api'
 import TabsComponent from "@/components/Tabs"
+import DynamicCustomTitleBar from "@/components/DynamicCustomTitleBar"
 
 const Home: NextPage = () => {
   return (
-    <div style={{backgroundColor: '#121212'}}>
+    <>
+      <DynamicCustomTitleBar />
       <TabsComponent />
-    </div>
+    </>
   )
 }
 
