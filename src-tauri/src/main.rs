@@ -4,12 +4,16 @@
 )]
 
 use pcspecs::specs;
-// use regex::Regex;
 use serde::Serialize;
 use std::env;
+// use std::os::windows::process::CommandExt;
 use std::path::Path;
 use std::process::Command;
+use std::process::Stdio;
 use std::time::{SystemTime, UNIX_EPOCH};
+
+// const CREATE_NO_WINDOW: u32 = 0x08000000;
+// const DETACHED_PROCESS: u32 = 0x00000008;
 
 #[tauri::command]
 fn on_button_clicked() -> String {
@@ -99,6 +103,8 @@ fn cmd(input: String, path: String) -> String {
         Command::new("cmd")
             .current_dir(path.replace("\\", "/"))
             .args(["/C", &input])
+            // .creation_flags(DETACHED_PROCESS)
+            .stdout(Stdio::piped())
             .output()
             .expect("failed to execute process")
     } else {
@@ -106,6 +112,7 @@ fn cmd(input: String, path: String) -> String {
             .current_dir(path.replace("\\", "/"))
             .arg("-c")
             .arg(String::from(input))
+            .stdout(Stdio::piped())
             .output()
             .expect("failed to execute process")
     };

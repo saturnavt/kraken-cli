@@ -59,7 +59,8 @@
         "resizable": true,
         "title": "Kraken cli",
         "width": 900,
-        "height": 500
+        "height": 500,
+        "center": true
       }
     ]
   }
