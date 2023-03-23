@@ -14,22 +14,67 @@ const Terminal: NextPage = () => {
             setPreviusInput([]);
             setCmdResult([]);
         }
-        setPreviusInput(previusInput => [...previusInput, input]);
-        setInput("");
 
-        await invoke<string>("cmd", { input: input })
-            .then((value) => {
-                if (value == "") {
-                    setCmdResult(cmdResult => [...cmdResult, "Command " + '"' + input + '"' + " not found"]);
-                } else {
-                    setCmdResult(cmdResult => [...cmdResult, value]);
-                }
-            })
-            .catch((err) => console.log("Error"))
+        // go back one folder
+        if (input == "cd ..") {
+            setCurrentPath(currentPath.replace(/\\[^\\]+$/, ""));
+
+            if (currentPath.slice(-1) == ":") {
+                setCurrentPath(currentPath + "\\")
+            }
+            setInput("");
+        }
+
+        // go to path
+        if (input.substring(0, 2) == "cd" && input.slice(-2) != ".." && input.includes("\\") == true) {
+            let verifyPath = await verify_path(input.replace("cd", "").trimStart());
+            console.log(verifyPath)
+            if (verifyPath) {
+                setCurrentPath(input.replace("cd", "").trimStart())
+                setInput("");
+            }
+        }
+
+        // Go in one folder
+        if (input.substring(0, 2) == "cd" && input.includes("\\") == false && input.slice(-2) != "..") {
+            let verifyPath = await verify_path(currentPath + "\\" + input.replace("cd", "").trimStart());
+            console.log(verifyPath)
+            console.log(input.slice(-2))
+            if (verifyPath) {
+                setCurrentPath(currentPath + "\\" + input.replace("cd", "").trimStart())
+                setInput("");
+            }
+        }
+
+        if (input != "cd .." || input.substring(0, 2) == "cd") {
+            setPreviusInput(previusInput => [...previusInput, input]);
+            setInput("");
+
+            await invoke<string>("cmd", { input: input, path: currentPath })
+                .then((value) => {
+                    if (value == "") {
+                        setCmdResult(cmdResult => [...cmdResult, "Command " + '"' + input + '"' + " not found"]);
+                    } else {
+                        setCmdResult(cmdResult => [...cmdResult, value]);
+                    }
+                })
+                .catch((err) => console.log("Error"))
+        }
     }
 
     const handleInput = (e: any) => {
         setInput(e.target.value)
+    }
+
+    const verify_path = async (path: string) => {
+        let promise = new Promise(function (resolve, reject) {
+            return invoke<boolean>("verify_path", { path: path })
+                .then((value) => {
+                    resolve(value);
+                })
+                .catch((err) => console.log("Error"))
+        });
+        return promise
     }
 
     const current_path = async () => {
@@ -51,12 +96,16 @@ const Terminal: NextPage = () => {
         }
     }
 
+    let initialized = false
     useEffect(() => {
-        current_path();
-    })
+        if (!initialized) {
+            initialized = true
+            current_path();
+        }
+    }, [])
 
     return (
-        <div style={{ backgroundColor: 'black' }}>
+        <div style={{ backgroundColor: '#121212' }}>
             <br></br>
             <br></br>
             {/* <table>
@@ -67,9 +116,11 @@ const Terminal: NextPage = () => {
                 }
             </table> */}
             <table>
-                {cmdResult.length == 0 ? null : cmdResult.map((cmdResults) => {
-                    return <li style={{ color: 'white', marginLeft: '5px', }} id="p_wrap">{cmdResults}</li>
-                })}
+                <tbody>
+                    {cmdResult.length == 0 ? null : cmdResult.map((cmdResults, index) => {
+                        return <li key={index} style={{ color: 'white', marginLeft: '5px', }} id="p_wrap">{cmdResults}</li>
+                    })}
+                </tbody>
             </table>
             <form onSubmit={handleSubmit}>
                 <a style={{ color: 'white' }}>{currentPath}{'> '}</a>

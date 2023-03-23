@@ -8,7 +8,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
     Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: black;
+  background-color: #121212;
 }
 
 a {
@@ -22,7 +22,7 @@ a {
 
 input {
   color: white;
-  background-color: black;
+  background-color: #121212;
   border-width: 0px;
   width: 50%;
 }
@@ -38,30 +38,35 @@ li {
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
   color: #fff !important;
-  background-color: #000 !important;
+  background-color: #121212 !important;
   border-color: none !important;
   border-radius: 0%;
-  border-top: 0px;
+  border-top: -1px;
   border-left: 0px;
   border-right: 0px;
-  border-color: #000 !important;
-  border-top-color: #000 !important;
-  border-left-color: #000 !important;
-  border-right-color: #000 !important;
+  border-color: #121212 !important;
+  border-top-color: #121212 !important;
+  border-left-color: #121212 !important;
+  border-right-color: #121212 !important;
   border-bottom-color: #fff !important;
   // border-bottom: 1px;
 }
 
 .nav-tabs {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
   color: #fff !important;
   border-bottom: none !important;
   position: fixed;
-  background-color: #000 !important;
+  background-color: #121212 !important;
   border-color: none !important;
   width: 100%;
 }
 
 .nav-tabs .nav-link:hover {
+  margin-top: 1px;
+  margin-left: 1px;
   border-radius: 0%;
   border-top: 0px;
   border-left: 0px;
@@ -82,6 +87,12 @@ li {
   color: #fff !important;
 }
 
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a::before,
+.nav-tabs>li.active>a:hover {
+  border: 0;
+}
+
 #p_wrap {
   white-space: pre-line;
   word-wrap: break-word;
@@ -90,12 +101,12 @@ li {
 /*Start of the  scrollbar*/
 ::-webkit-scrollbar {
   width: 8px;
-  background-color: #000;
+  background-color: #121212;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #485460;
 }
 
 /*End of the scrollbar*/
@@ -106,4 +117,16 @@ li {
 
 .divAdded:hover .btnDelete {
   display: block;
+}
+
+.btnDelete:hover {
+  color: red;
+}
+
+.defaultDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }

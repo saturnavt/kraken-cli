@@ -8,7 +8,7 @@ import TabsComponent from "@/components/Tabs"
 
 const Home: NextPage = () => {
   return (
-    <div style={{backgroundColor: 'black'}}>
+    <div style={{backgroundColor: '#121212'}}>
       <TabsComponent />
     </div>
   )

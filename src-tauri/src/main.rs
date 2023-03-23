@@ -7,6 +7,7 @@ use pcspecs::specs;
 // use regex::Regex;
 use serde::Serialize;
 use std::env;
+use std::path::Path;
 use std::process::Command;
 use std::time::{SystemTime, UNIX_EPOCH};
 
@@ -88,16 +89,21 @@ fn current_path() -> String {
 }
 
 #[tauri::command]
-fn cmd(input: String) -> String {
+fn verify_path(path: String) -> bool {
+    return Path::new(&String::from(path.to_string())).exists();
+}
+
+#[tauri::command]
+fn cmd(input: String, path: String) -> String {
     let output = if cfg!(target_os = "windows") {
         Command::new("cmd")
-            .current_dir(&current_path().replace("\\", "/"))
+            .current_dir(path.replace("\\", "/"))
             .args(["/C", &input])
             .output()
             .expect("failed to execute process")
     } else {
         Command::new("sh")
-            .current_dir(&current_path().replace("\\", "/"))
+            .current_dir(path.replace("\\", "/"))
             .arg("-c")
             .arg(String::from(input))
             .output()
@@ -118,7 +124,8 @@ fn main() {
             pvp,
             master,
             current_path,
-            cmd
+            cmd,
+            verify_path
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

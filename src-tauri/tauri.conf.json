@@ -57,7 +57,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "kraken cli",
+        "title": "Kraken cli",
         "width": 900,
         "height": 500
       }
