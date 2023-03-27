@@ -1,24 +1,24 @@
 
 import type { NextPage } from "next"
 import { window } from '@tauri-apps/api'
+import close from '../../public/redClose.png'
+import clexpand from '../../public/greenExpand.png'
+import yellowMinimized from '../../public/yellowMinimised.png'
+import Image from 'next/image';
 
 const Titlebar: NextPage = () => {
     return (
-        <><div style={{ background: 'transparent !important' }}>
+        <div data-tauri-drag-region className="titlebar">
             <div className="titlebar-button" id="titlebar-minimize" onClick={() => window.appWindow.minimize()}>
-                <img
-                    src="https://api.iconify.design/mdi:window-minimize.svg"
-                    alt="minimize" style={{color: 'white'}}/>
+                <Image src={yellowMinimized} alt="minimize" width={20} height={20} />
             </div>
             <div className="titlebar-button" id="titlebar-maximize" onClick={() => window.appWindow.toggleMaximize()}>
-                <img
-                    src="https://api.iconify.design/mdi:window-maximize.svg"
-                    alt="maximize" />
+                <Image src={clexpand} alt="maximize" width={20} height={20} />
             </div>
             <div className="titlebar-button" id="titlebar-close" onClick={() => window.appWindow.close()}>
-                <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
+                <Image src={close} alt="close" width={20} height={20} />
             </div>
-        </div></>
+        </div>
     )
 }
 

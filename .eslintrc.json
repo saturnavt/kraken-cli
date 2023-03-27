@@ -9,7 +9,7 @@
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
-  "plugins": ["@typescript-eslint", "simple-import-sort", "prettier"],
+  "plugins": ["@typescript-eslint", "simple-import-sort", "prettier"]
   // "rules": {
   //   "eqeqeq": "error",
   //   "no-else-return": "error",
