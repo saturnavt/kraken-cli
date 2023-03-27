@@ -9,6 +9,12 @@
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
+  "@typescript-eslint/no-misused-promises": [
+    "error",
+    {
+      "checksConditionals": false
+    }
+  ],
   "plugins": ["@typescript-eslint", "simple-import-sort", "prettier"]
   // "rules": {
   //   "eqeqeq": "error",
