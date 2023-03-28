@@ -1,6 +1,7 @@
 import { invoke } from "@tauri-apps/api/tauri"
 import type { NextPage } from "next"
 import { useEffect, useState } from "react"
+import { Command } from '@tauri-apps/api/shell'
 
 const Terminal: NextPage = () => {
     const [currentPath, setCurrentPath] = useState("");
@@ -20,6 +21,7 @@ const Terminal: NextPage = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
         if (input == "cls") {
             setPreviusInput([]);
             setCmdResult([]);
@@ -148,7 +150,7 @@ const Terminal: NextPage = () => {
             <table>
                 <tbody>
                     {cmdResult.length == 0 ? null : cmdResult.map((cmdResults, index) => {
-                        return <li key={index} style={{ color: 'white', marginLeft: '5px', }} id="p_wrap">{cmdResults}</li>
+                        return <li key={index} style={{ color: 'white', marginLeft: '5px', font:'sans-serif' }} id="p_wrap">{cmdResults}</li>
                     })}
                 </tbody>
             </table>

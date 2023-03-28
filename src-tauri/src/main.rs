@@ -6,13 +6,16 @@
 use pcspecs::specs;
 use serde::Serialize;
 use std::env;
+use std::error::Error;
+// use std::io::BufRead;
+// use std::io::BufReader;
+// use std::io::ErrorKind;
 // use std::os::windows::process::CommandExt;
 use std::path::Path;
-use std::process::Command;
-use std::process::Stdio;
+use std::process::{Command, Stdio};
 use std::time::{SystemTime, UNIX_EPOCH};
-use window_vibrancy::{apply_blur};
 use tauri::Manager;
+use window_vibrancy::apply_blur;
 // const CREATE_NO_WINDOW: u32 = 0x08000000;
 // const DETACHED_PROCESS: u32 = 0x00000008;
 
@@ -62,7 +65,7 @@ fn pvp() -> String {
 }
 
 #[tokio::main]
-async fn api_call() -> Result<String, Box<dyn std::error::Error>> {
+async fn api_call() -> Result<String, Box<dyn Error>> {
     // Post request to worldofwarcraft.com
     let response = reqwest::Client::new()
         .get("https://worldofwarcraft.com/en-us/character/us/ragnaros/illud/pvp.json")
@@ -133,19 +136,19 @@ fn main() {
     //     .run(tauri::generate_context!())
     //     .expect("error while running tauri application");
 
-        tauri::Builder::default()
+    tauri::Builder::default()
         .setup(|app| {
-          let window = app.get_window("main").unwrap();
-    
-          #[cfg(target_os = "macos")]
-          apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
-            .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
-    
-          #[cfg(target_os = "windows")]
-          apply_blur(&window, Some((18, 18, 18, 125)))
-            .expect("Unsupported platform! 'apply_blur' is only supported on Windows");
-    
-          Ok(())
+            let window = app.get_window("main").unwrap();
+
+            #[cfg(target_os = "macos")]
+            apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, None)
+                .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
+
+            #[cfg(target_os = "windows")]
+            apply_blur(&window, Some((18, 18, 18, 125)))
+                .expect("Unsupported platform! 'apply_blur' is only supported on Windows");
+
+            Ok(())
         })
         .invoke_handler(tauri::generate_handler![
             on_button_clicked,
