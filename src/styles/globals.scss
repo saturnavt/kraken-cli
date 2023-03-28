@@ -37,8 +37,9 @@ li {
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
+  margin-top: 2px;
   color: #fff !important;
-  background-color: transparent !important;
+  background-color: rgba(18, 18, 18, 0.9) !important;
   border-color: none !important;
   border-radius: 0%;
   border-top: 0px;
@@ -66,8 +67,8 @@ li {
 }
 
 .nav-tabs .nav-link:hover {
-  margin-top: 0px;
-  margin-left: 0px;
+  margin-top: 1.8%;
+  margin-left: 1px;
   border-radius: 0%;
   border-top: 0px;
   border-left: 0px;
@@ -85,7 +86,8 @@ li {
 }
 
 .nav-link {
-  margin-top: -1px;
+  // background-color: rgba(18, 18, 18, 0.23) !important;
+  margin-top: 1px;
   color: #fff !important;
 }
 
@@ -104,12 +106,12 @@ li {
 /*Start of the  scrollbar*/
 ::-webkit-scrollbar {
   width: 8px;
-  background-color: #121212;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #232f3a;
+  background-color: rgba(18, 18, 18);
 }
 
 /*End of the scrollbar*/
@@ -160,7 +162,7 @@ li {
 
 .titlebar {
   height: 30px;
-  background: rgba(18, 18, 18, 0.23);
+  background: rgba(18, 18, 18, 0.5);
   user-select: none;
   display: flex;
   justify-content: flex-end;
