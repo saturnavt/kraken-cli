@@ -1,3 +1,4 @@
-*.tsx linguist-language=TypeScript
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript execute
 *.js linguist-language=JavaScript
 *.scss linguist-language=SCSS
