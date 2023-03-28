@@ -1,0 +1,4 @@
+*.typescript linguist-detectable=false
+*.javascript linguist-detectable=false
+*.javascript linguist-detectable=false
+*.scss linguist-detectable=false
