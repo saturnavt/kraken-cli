@@ -8,6 +8,16 @@ const Terminal: NextPage = () => {
     const [cmdResult, setCmdResult] = useState<string[]>([]);
     const [previusInput, setPreviusInput] = useState<string[]>([]);
 
+    class pcinfo {
+        hostname?: string
+        platform?: string
+        os_number?: string
+        cpu?: string
+        gpu?: string
+        ram?: string
+        mainboard?: string
+    }
+
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         if (input == "cls") {
@@ -60,6 +70,14 @@ const Terminal: NextPage = () => {
                 })
                 .catch((err) => console.log("Error"))
         }
+
+        // pc info
+        if (input === "pcinfo") {
+
+            let pcinfo: unknown = await pc_info();
+            let asd = pcinfo as string
+            setCmdResult(cmdResult => [...cmdResult, asd]);
+        }
     }
 
     const handleInput = (e: any) => {
@@ -67,7 +85,7 @@ const Terminal: NextPage = () => {
     }
 
     const verify_path = async (path: string) => {
-        let promise = new Promise(function (resolve, reject) {
+        let promise = new Promise(async function (resolve, reject) {
             return invoke<boolean>("verify_path", { path: path })
                 .then((value) => {
                     resolve(value);
@@ -83,6 +101,18 @@ const Terminal: NextPage = () => {
                 setCurrentPath(value)
             })
             .catch((err) => console.log("Error"))
+    }
+
+    const pc_info = async () => {
+        let promise = new Promise(async function (resolve, reject) {
+            try {
+                const value = await invoke<pcinfo>("pc_specs");
+                resolve(value);
+            } catch (err) {
+                return console.log("Error");
+            }
+        });
+        return promise
     }
 
     function onInputKeyDown(event: any) {

@@ -89,9 +89,9 @@ li {
   color: #fff !important;
 }
 
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a::before,
-.nav-tabs > li.active > a:hover {
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a::before,
+.nav-tabs>li.active>a:hover {
   border: 0;
 }
 
@@ -143,9 +143,24 @@ li {
   transform: translate(-50%, -50%);
 }
 
+.kraken-terminal-logo {
+  float: left;
+  position: fixed;
+  top: 5px;
+  left: 10px;
+}
+
+.titlebar-text {
+  float: left;
+  color: #fff;
+  top: 3px;
+  left: 40px;
+  position: fixed;
+}
+
 .titlebar {
   height: 30px;
-  // background: #ffffff;
+  background: rgba(18, 18, 18, 0.23);
   user-select: none;
   display: flex;
   justify-content: flex-end;

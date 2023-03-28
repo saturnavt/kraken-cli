@@ -7,7 +7,7 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "Kraken cli",
+    "productName": "Kraken Terminal",
     "version": "0.1.0"
   },
   "tauri": {

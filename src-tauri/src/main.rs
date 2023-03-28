@@ -29,11 +29,6 @@ fn on_button_clicked() -> String {
     )
 }
 
-#[tauri::command]
-fn master() -> String {
-    String::from("name")
-}
-
 #[derive(Debug, Serialize)]
 struct Sysinfo {
     hostname: String,
@@ -156,7 +151,6 @@ fn main() {
             on_button_clicked,
             pc_specs,
             pvp,
-            master,
             current_path,
             cmd,
             verify_path
