@@ -1,4 +1,4 @@
-# Kraken cli
+# Kraken Terminal
 
 ![Tauri window screenshot](public/1.JPEG)
 ![Tauri window screenshot](public/2.JPEG)

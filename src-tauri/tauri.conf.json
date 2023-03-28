@@ -39,7 +39,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.krakencli.dev",
+      "identifier": "com.krakenterminal.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -67,7 +67,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "Kraken cli",
+        "title": "Kraken Terminal",
         "width": 900,
         "height": 500,
         "center": true,
