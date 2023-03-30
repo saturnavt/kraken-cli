@@ -28,6 +28,8 @@ const Terminal: NextPage = () => {
         if (input == "cls") {
             setPreviusInput([]);
             setCmdResult([]);
+            setInput("");
+            return false;
         }
 
         // go back one folder
@@ -67,7 +69,7 @@ const Terminal: NextPage = () => {
 
             await invoke<string>("cmd", { input: input, path: currentPath })
                 .then((value) => {
-                    if (value == "") {
+                    if (value.length == 0) {
                         setCmdResult(cmdResult => [...cmdResult, "Command " + '"' + input + '"' + " not found"]);
                     } else {
                         setCmdResult(cmdResult => [...cmdResult, value]);

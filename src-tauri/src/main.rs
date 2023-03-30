@@ -99,7 +99,7 @@ fn verify_path(path: String) -> bool {
 #[tauri::command]
 fn cmd(input: String, path: String) -> String {
     let output = if cfg!(target_os = "windows") {
-        Command::new("cmd")
+        Command::new("powershell")
             .current_dir(path.replace("\\", "/"))
             .args(["/C", &input])
             // .creation_flags(DETACHED_PROCESS)
@@ -118,6 +118,7 @@ fn cmd(input: String, path: String) -> String {
 
     // extract the raw bytes that we captured and interpret them as a string
     let stdout = String::from_utf8_lossy(&output.stdout).to_string();
+    
     println!("{}", stdout);
     return stdout;
 }
