@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 import { useEffect, useState } from "react"
-import Terminal from "@/components/Terminal"
+import Terminall from "@/components/Terminal"
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
@@ -75,7 +75,7 @@ const TabsComponent: NextPage = () => {
                             }>
                                 <br></br>
                                 <br></br>
-                                <Terminal />
+                                <Terminall />
                             </Tab>
                         })
                     }

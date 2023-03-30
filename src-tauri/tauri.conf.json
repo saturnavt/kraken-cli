@@ -31,7 +31,7 @@
         "scope": [
           {
             "name": "cmd",
-            "cmd": "dir C:/Users/illud/Desktop/kraken-terminal/src-tauri",
+            "cmd": "node",
             "args": true
           }
         ]

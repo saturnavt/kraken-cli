@@ -22,6 +22,9 @@ const Terminal: NextPage = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
+        // const command =  new Command("cmd", "node -v")
+        // console.log(`command stdout: "${ command.stdout}"`)
+
         if (input == "cls") {
             setPreviusInput([]);
             setCmdResult([]);
@@ -150,7 +153,7 @@ const Terminal: NextPage = () => {
             <table>
                 <tbody>
                     {cmdResult.length == 0 ? null : cmdResult.map((cmdResults, index) => {
-                        return <li key={index} style={{ color: 'white', marginLeft: '5px', font:'sans-serif' }} id="p_wrap">{cmdResults}</li>
+                        return <li key={index} style={{ color: 'white', marginLeft: '5px', font: 'sans-serif' }} id="p_wrap">{cmdResults}</li>
                     })}
                 </tbody>
             </table>
