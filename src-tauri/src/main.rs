@@ -119,7 +119,6 @@ fn cmd(input: String, path: String) -> String {
     // extract the raw bytes that we captured and interpret them as a string
     let stdout = String::from_utf8_lossy(&output.stdout).to_string();
     
-    println!("{}", stdout);
     return stdout;
 }
 
